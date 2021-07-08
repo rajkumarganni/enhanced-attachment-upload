@@ -1,0 +1,129 @@
+
+To configure file uplaod functionality in yii framework please follow below article
+
+https://demos.krajee.com/widget-details/fileinput
+
+In this above article they are provided basic implemention for upload attachment up jquery part.
+
+
+So after set up basec installation please following below steps for advanced implemention
+
+
+
+
+____________________________________________
+Single attachment Upload
+____________________________________________
+1) create a input file field using Active form view page ie index.php 
+
+2) If we require to upload only single attachement then use below code in view page.
+
+div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+					  	<label>Image1</label>
+                <?= $form->field($model, 'image1')->widget(FileInput::classname(), ['pluginOptions' => [
+                                                                'uploadUrl' => Url::to(['yourcontroller/single-file-upload']),
+                                                                'maxFileCount' => 10,
+                                                                'allowedFileExtensions'=> ['jpg','jpeg', 'png', 'gif', 'pdf','doc','docx'],
+                                                                'uploadAsync' => false,
+                                                                'overwriteInitial' => true,
+                                                                'initialPreviewAsData' => true,
+                                                                'showUpload' => false,
+                                                                'showRemove' => false,
+                                                                'showCaption' => false,
+                                                              ]])->label(false);?>  
+						    <small>(format file : .DOC, .DOCX, .JPG, .JPEG, .PNG, .PDF)</small>
+						      <!--<div id="fileList"></div>   -->                  
+				  	</div>
+          </div>
+</div>
+
+3) Go to yourcontroller.php and then find "actionSingleFileUpload" function and copy & paste it in to required controller
+4) update file storing path according to your saving folder structure
+5) do simple changes in this function according to your requirement.
+
+
+
+
+____________________________________________
+Delete Single attachment
+____________________________________________
+
+1) If require to delete uploaded attachment then find the function which is "actionSingleDeleteFile" at yourcontroller.php file then copy & paste in to required controller change paths accrording to your folder structure.
+
+
+
+
+
+
+
+____________________________________________
+multiple attachments Upload
+____________________________________________
+1) create a input file field using Active form view page ie index.php 
+
+2) If we require to upload only single attachement then use below code in view page.
+
+<div class="row">
+            <div class="col-md-6">
+            ` <div class="form-group">
+                          <label>multiple attachments</label>
+                            <?php 
+                            echo FileInput::widget([
+                                'name' => 'attachment[]',
+                                'id' => 'attachment',
+                                'options'=>[
+                                      'multiple'=>true
+                                  ],
+                                'pluginOptions' => [
+                                  
+                                    'uploadUrl' => Url::to(['yourcontroller/file-upload']),
+                                    'maxFileCount' => 10,
+                                    'allowedFileExtensions'=> ['jpg','jpeg', 'png', 'gif', 'pdf','doc','docx'],
+                                    'uploadAsync' => false,
+                                    'overwriteInitial' => false,
+                                    'initialPreviewAsData' => true,
+                                    'showUpload' => false,
+                                    'showRemove' => false,
+                                    'showCaption' => false,
+                                  ],
+                                ]);
+                            ?>
+                </div>` 
+            </div>
+          </div>
+
+3) Go to yourcontroller.php and then find "actionFileUpload" function and copy & paste it in to required controller
+4) update file storing path according to your saving folder structure
+5) do simple changes in this function according to your requirement.
+
+
+
+____________________________________________
+Delete multiple attachments
+____________________________________________
+
+1) If require to delete multiple uploaded attachments then find the function which is "actionDeleteFile" at yourcontroller.php file then copy & paste in to required controller change paths accrording to your folder structure.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
